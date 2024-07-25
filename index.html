@@ -10,6 +10,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: aliceblue;
         }
         .order_now_btn {
             width: 150px;
@@ -24,7 +25,6 @@
         }
         .truck_btn {
             background-color: black;
-            color: black;
         }
         .truck_btn::before {
             content: '----------------------';
@@ -51,16 +51,50 @@
                 left: 100%;
             }
             25% {
-                left: 5%;
+                left: 30%;
             }
             50% {
-                left: 5%;
+                left: 30%;
             }
             75% {
-                left: 50%;
+                left: 10%;
             }
             100% {
                 left: 100%;
+            }
+        }
+        .box {
+            position: absolute;
+            top: 30%;
+            left: -20%;
+            width: 20px;
+            height: 20px;
+            background-color: orange;
+            animation: box 4s linear 1 forwards;
+            z-index: 39;
+        }
+        @keyframes box {
+            0% {
+                left: -20%;
+                transform: rotate(0deg);
+            }
+            10% {
+                left: 10%;
+            }
+            25% {
+                left: 10%;
+            }
+            35% {
+                left: 10%;
+            }
+            45% {
+                left: 10%;
+            }
+            55% {
+                left: 10%;
+            }
+            100% {
+                left: 10%;
             }
         }
     </style>
@@ -69,22 +103,29 @@
     <div class="main_container">
         <button class="order_now_btn" id="btnId">Order Now
             <img id="truckId" class="truck_img" src="./images/truck.png" alt="truck"/>
+            <span id="spanId"></span>
         </button>
     </div>
     <script>
         const btnId = document.getElementById('btnId');
         const truckId = document.getElementById('truckId');
+        const spanId = document.getElementById('spanId');
 
         btnId.addEventListener('click', () => {
             btnId.classList.add('truck_btn');
             truckId.classList.add('truck_anim');
+            btnId.style.color = 'black';
+            spanId.setAttribute('class', 'box')
             setTimeout(()=>{
                 btnId.classList.remove('truck_btn');
-                btnId.textContent = 'Ordered'
+                btnId.textContent = 'Order Placed'
                 btnId.style.color = 'white';
                 truckId.classList.remove('truck_anim');
-            },5500)
-            btnId.setAttribute('disabled', '');
+                btnId.setAttribute('disabled', '');
+            },5500);
+            setTimeout(() => {
+                spanId.style.opacity = 0; 
+            },3500)
         })
         
     </script>
