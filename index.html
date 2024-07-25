@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .order_now_btn {
+            width: 150px;
+            height: 50px;
+            position: relative;
+            overflow: hidden;
+            background-color: green;
+            color: white;
+            border: 0px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .truck_btn {
+            background-color: black;
+            color: black;
+        }
+        .truck_btn::before {
+            content: '----------------------';
+            position: absolute;
+            top: 33%;
+            left: 0%;
+            color: white;
+            transform: scale(2);
+        }
+        .truck_img {
+            position: absolute;
+            top: -50%;
+            left: 100%;
+            width: 100px;
+            height: 100px;
+            z-index: 40;
+        }
+        .truck_anim {
+            animation: truck 5s linear 1 forwards;
+        }
+        @keyframes truck {
+            0% {
+                top: -50%;
+                left: 100%;
+            }
+            25% {
+                left: 5%;
+            }
+            50% {
+                left: 5%;
+            }
+            75% {
+                left: 50%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main_container">
+        <button class="order_now_btn" id="btnId">Order Now
+            <img id="truckId" class="truck_img" src="./images/truck.png" alt="truck"/>
+        </button>
+    </div>
+    <script>
+        const btnId = document.getElementById('btnId');
+        const truckId = document.getElementById('truckId');
+
+        btnId.addEventListener('click', () => {
+            btnId.classList.add('truck_btn');
+            truckId.classList.add('truck_anim');
+            setTimeout(()=>{
+                btnId.classList.remove('truck_btn');
+                btnId.textContent = 'Ordered'
+                btnId.style.color = 'white';
+                truckId.classList.remove('truck_anim');
+            },5500)
+        })
+        
+    </script>
+</body>
+</html>
